@@ -1,0 +1,5 @@
+dotnet add package MySql.Data.EntityFrameworkCore --version 8.0.20
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet tool install --global dotnet-ef --version 3.0.0
+
+dotnet ef dbcontext scaffold "server=localhost;port=3306;user=root;database=greenbookstore" MySql.Data.EntityFrameworkCore -o Models
