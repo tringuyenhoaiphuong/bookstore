@@ -15577,14 +15577,17 @@ input[type="number"] {
     margin-bottom: 5px; }
     .product-card .author:hover {
       color: #62ab00; }
-  .product-card h3 a {
-    padding: 0;
-    display: block;
-    text-transform: capitalize;
-    overflow: hidden;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 18px; }
+    .product-card h3 a {
+        padding: 0;
+        display: block;
+        text-transform: capitalize;
+        overflow: hidden;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 18px;
+        line-height: 1em;
+        min-height: 4em;
+    }
     .product-card h3 a:hover {
       color: #62ab00; }
   .product-card .price-block {

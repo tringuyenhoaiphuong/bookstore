@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BookStore.Models;
@@ -12,15 +13,17 @@ namespace BookStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BookService _bookService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BookService bookService)
         {
             _logger = logger;
+            _bookService = bookService;
         }
 
         public IActionResult Index()
         {
-            List<Book> listBook1 = new List<Book>()
+            /*List<Book> listBook1 = new List<Book>()
             {
                 new Book() {Id = 1, Author = "velit", Title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin feugiat massa sit amet auctor vulputate. Quisque fermentum tempor nisl, eget tristique velit imperdiet et. Maecenas tincidunt, elit eget tincidunt ornare, magna lorem dictum turpis, vitae iaculis augue sapien in massa. Sed rhoncus suscipit nisl vitae lacinia. Vestibulum sit amet aliquet odio. In vestibulum iaculis lectus. Mauris et eros eu eros tincidunt rutrum laoreet ut velit. Nulla blandit efficitur arcu, ut porttitor sem posuere nec. Fusce eleifend ligula quis sem gravida congue. Phasellus et urna in purus lobortis suscipit. Praesent ac tempus mi. In a gravida mi.", Price = 103, DiscountedPrice = 98},
                 new Book() {Id = 2, Author = "euismod", Title = "Etiam a turpis at lacus mattis lacinia.", Description = "Cras vulputate ultrices mauris. Donec eget odio vel urna efficitur sodales. Pellentesque sagittis bibendum neque id rutrum. Nulla at ex fringilla nunc mattis sodales. Duis in lacinia augue. Etiam gravida lobortis urna, in tempor velit. Sed mi dolor, consectetur vel est ut, bibendum fringilla purus.", Price = 144, DiscountedPrice = 139},
@@ -46,9 +49,9 @@ namespace BookStore.Controllers
                 new Book() {Id = 22, Author = "tempor", Title = "Nam non risus et elit feugiat tempor at vel tortor.", Description = "Suspendisse bibendum odio in nisi placerat, eu cursus neque egestas. Nulla sed posuere neque. Vestibulum ac laoreet nibh, quis tristique elit. Nam rhoncus aliquet nibh, sed porttitor nunc interdum ut. Etiam rutrum augue sed magna convallis sollicitudin. Cras feugiat posuere enim a posuere. Etiam sollicitudin metus fringilla ex semper, a hendrerit leo aliquet. Cras vitae hendrerit nulla, ut efficitur nisl. Donec sit amet accumsan ante. Vestibulum ultricies a nulla sit amet dignissim. Curabitur quis sem sit amet magna scelerisque porttitor porttitor in neque.", Price = 93, DiscountedPrice = 83},
                 new Book() {Id = 23, Author = "commodo", Title = "Quisque ac sapien mollis, dapibus nunc vel, maximus metus.", Description = "Curabitur tempus ac velit in pellentesque. Maecenas eu volutpat orci. Nulla tempor porttitor arcu, et congue tellus efficitur eu. Vivamus dapibus, nibh non facilisis cursus, nibh diam convallis nibh, sed consectetur elit arcu at neque. Donec facilisis mi ac justo bibendum, quis gravida sem blandit. Cras ut justo dapibus, maximus leo ac, venenatis ex. Curabitur cursus justo risus, interdum sollicitudin metus sagittis porttitor. Proin placerat sapien non ullamcorper varius. Vestibulum efficitur magna in blandit semper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue lacus eget enim mollis, sed ultricies lorem vulputate. In mauris massa, dignissim non est vulputate, accumsan convallis metus. Nunc interdum odio ut arcu feugiat condimentum. Maecenas eget fringilla turpis, nec faucibus mauris. Pellentesque eget urna efficitur, posuere tellus vitae, pulvinar lacus. Nulla vitae lorem a risus mattis semper eget sed metus.", Price = 159, DiscountedPrice = 154},
                 new Book() {Id = 24, Author = "ullamcorper", Title = "Cras pellentesque arcu id pretium rutrum.", Description = "Suspendisse quis ante rutrum, tincidunt leo quis, tincidunt est. Pellentesque venenatis tellus quis nisi mollis dapibus. Phasellus quis nunc iaculis, viverra neque vel, auctor felis. Donec eros lectus, porta id interdum nec, vulputate eu urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam placerat justo neque, id vestibulum dui suscipit in. Quisque sit amet dui in sapien aliquam lacinia dignissim vitae magna. Morbi eleifend aliquet imperdiet. Vestibulum pretium, magna ac gravida vestibulum, eros ante accumsan tellus, ac porta massa velit et mi. Suspendisse non accumsan massa. Integer ac tortor imperdiet, malesuada orci ac, varius dolor.", Price = 43, DiscountedPrice = 37},
-            };
-            ViewData["list1"] = listBook1;
-            ViewData["list2"] = listBook1;
+            };*/
+            ViewData["list1"] = _bookService.ListAllBooks();
+            ViewData["list2"] = _bookService.ListAllBooks();
             return View();
         }
 
