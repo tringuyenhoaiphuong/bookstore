@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace BookStore.Models
 {
     public partial class AppDataContext : DbContext
     {
-        public AppDataContext()
+        private IConfiguration _configuration;
+        public AppDataContext(IConfiguration _configuration)
         {
+            this._configuration = _configuration;
         }
 
-        public AppDataContext(DbContextOptions<AppDataContext> options)
+        public AppDataContext(DbContextOptions<AppDataContext> options, IConfiguration _configuration)
             : base(options)
         {
+            this._configuration = _configuration;
         }
 
         public virtual DbSet<Book> Book { get; set; }
@@ -24,8 +27,8 @@ namespace BookStore.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings[0].ConnectionString;
-                optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;database=greenbookstore");
+                string connectionString = _configuration.GetConnectionString("mysql");
+                optionsBuilder.UseMySQL(connectionString);
             }
         }
 
