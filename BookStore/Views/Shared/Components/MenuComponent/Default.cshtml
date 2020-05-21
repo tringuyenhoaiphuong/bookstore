@@ -1,0 +1,27 @@
+﻿@model System.Collections.Generic.List<BookStore.Models.Menu>
+
+    <div class="main-navigation flex-lg-right">
+        <ul class="main-menu menu-right li-last-0">
+            @foreach (Menu menu in Model.Where(m => m.ParentId == 0))
+            {
+                <li class="menu-item @(menu.ChildMenus != null && menu.ChildMenus.Count > 0?"has-children":"")">
+                    <a href="javascript:void(0)">
+                        @menu.Title 
+                        @if (menu.ChildMenus != null && menu.ChildMenus.Count > 0)
+                        {
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        }
+                    </a>
+                    @if (menu.ChildMenus != null && menu.ChildMenus.Count > 0)
+                    {
+                        <ul class="sub-menu">
+                            @foreach (Menu sub in menu.ChildMenus)
+                            {
+                                <li> <a href="#">@sub.Title</a></li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </div>

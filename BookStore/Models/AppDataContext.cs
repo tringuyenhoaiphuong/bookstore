@@ -21,6 +21,7 @@ namespace BookStore.Models
 
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Categorybook> Categorybook { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -139,6 +140,10 @@ namespace BookStore.Models
                     .HasColumnName("parentId")
                     .HasColumnType("int(11)")
                     .HasDefaultValue(0);
+
+                entity.HasMany(d => d.ChildMenus)
+                    .WithOne(d => d.Parent)
+                    .HasForeignKey(d => d.ParentId);
             });
 
             OnModelCreatingPartial(modelBuilder);

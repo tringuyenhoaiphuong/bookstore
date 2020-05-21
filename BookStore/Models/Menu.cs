@@ -11,5 +11,9 @@ namespace BookStore.Models
         public string Title { get; set; }
         public int Order { get; set; }
         public int ParentId { get; set; }
+
+        public Menu Parent { get; set; }
+
+        public virtual ICollection<Menu> ChildMenus { get; set; }
     }
 }

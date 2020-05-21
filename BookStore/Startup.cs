@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.Components;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ namespace BookStore
             services.AddControllersWithViews();
             services.AddDbContext<AppDataContext>();
             services.AddScoped<BookService>();
+            services.AddScoped<MenuService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
