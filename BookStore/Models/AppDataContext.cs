@@ -40,7 +40,8 @@ namespace BookStore.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Author)
                     .HasColumnName("author")
@@ -75,7 +76,8 @@ namespace BookStore.Models
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Title)
                     .HasColumnName("title")
@@ -111,6 +113,32 @@ namespace BookStore.Models
                     .WithMany(p => p.Categorybook)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_CategoryBook_Category");
+            });
+
+            modelBuilder.Entity<Menu>(entity =>
+            {
+                entity.ToTable("menu");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.Order)
+                    .HasColumnName("order")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValue(0);
+
+                entity.Property(e => e.ParentId)
+                    .HasColumnName("parentId")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValue(0);
             });
 
             OnModelCreatingPartial(modelBuilder);

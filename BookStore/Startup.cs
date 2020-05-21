@@ -26,7 +26,7 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<AppDataContext>();
+            services.AddDbContext<AppDataContext>();
             services.AddScoped<BookService>();
         }
 
