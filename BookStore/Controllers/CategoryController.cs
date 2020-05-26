@@ -20,10 +20,10 @@ namespace BookStore.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Detail(int categoryId)
+        public IActionResult Detail(int id)
         {
 
-            List<Book> books = _bookService.GetAllBookOfCategory(categoryId);
+            List<Book> books = _bookService.GetAllBookOfCategory(id);
             return View(books);
         }
     }
