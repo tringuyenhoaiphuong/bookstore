@@ -14,6 +14,9 @@ namespace BookStore.Models
         public string Title { get; set; }
         public int? Parentid { get; set; }
 
+        public Category Parent { get; set; }
+        public ICollection<Category> ChildCategories { get; set; }
+
         public virtual ICollection<Categorybook> Categorybook { get; set; }
     }
 }

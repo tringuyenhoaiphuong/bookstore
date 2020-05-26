@@ -85,6 +85,13 @@ namespace BookStore.Models
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasDefaultValueSql("'NULL'");
+
+                entity.Property(e => e.Parentid)
+                    .HasColumnName("Parentid")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("'NULL'");
+
+                entity.HasOne(c => c.Parent).WithMany(c => c.ChildCategories).HasForeignKey(c => c.Parentid);
             });
 
             modelBuilder.Entity<Categorybook>(entity =>
@@ -139,7 +146,7 @@ namespace BookStore.Models
                 entity.Property(e => e.ParentId)
                     .HasColumnName("parentId")
                     .HasColumnType("int(11)")
-                    .HasDefaultValue(0);
+                    .HasDefaultValueSql("'NULL'");
 
                 entity.HasMany(d => d.ChildMenus)
                     .WithOne(d => d.Parent)

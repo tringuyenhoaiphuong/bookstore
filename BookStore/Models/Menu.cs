@@ -10,7 +10,7 @@ namespace BookStore.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public int Order { get; set; }
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         public Menu Parent { get; set; }
 
