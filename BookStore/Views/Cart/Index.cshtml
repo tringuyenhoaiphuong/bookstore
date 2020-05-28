@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form action="#" class="">
+                    <form asp-action="Update" class="">
                         <!-- Cart Table -->
                         <div class="cart-table table-responsive mb--40">
                             <table class="table">
@@ -41,7 +41,7 @@
                                             <td class="pro-quantity">
                                                 <div class="pro-qty">
                                                     <div class="count-input-block">
-                                                        <input type="number" class="form-control text-center"
+                                                        <input type="number" name="books[@kv.Key.Id]" class="form-control text-center"
                                                                value="@kv.Value">
                                                     </div>
                                                 </div>
@@ -64,7 +64,7 @@
                                                 </div>
                                             </div>
                                             <div class="update-block text-right">
-                                                <a href="@ViewData["returnurl"].ToString()" class="btn btn-outlined">Continue Shopping</a>
+                                                <a href="@ViewData["returnurl"]" class="btn btn-outlined">Continue Shopping</a>
                                                 <input type="submit" class="btn btn-outlined" name="update_cart"
                                                        value="Update cart">
                                                 <input type="hidden" id="_wpnonce" name="_wpnonce"

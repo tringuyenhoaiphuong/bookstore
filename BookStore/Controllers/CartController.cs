@@ -44,6 +44,12 @@ namespace BookStore.Controllers
             CardHelper.RemoveProduct(HttpContext, id);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Update([FromForm] Dictionary<int, int> books)
+        {
+            CardHelper.Update(HttpContext, books);
+            return RedirectToAction("Index");
+        }
     }
 
     public static class CardHelper
@@ -91,6 +97,12 @@ namespace BookStore.Controllers
             if (books.ContainsKey(id))
                 books.Remove(id);
             bookstr = JsonConvert.SerializeObject(books);
+            context.Session.SetString("cart", bookstr);
+        }
+
+        public static void Update(HttpContext context, Dictionary<int, int> books)
+        {
+            string bookstr = JsonConvert.SerializeObject(books);
             context.Session.SetString("cart", bookstr);
         }
     }
