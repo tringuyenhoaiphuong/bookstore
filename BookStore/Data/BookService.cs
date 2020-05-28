@@ -34,5 +34,17 @@ namespace BookStore.Data
                         select b;
             return query.ToList();
         }
+
+        public Book GetById(int id)
+        {
+            return appDataContext.Book.Find(id);
+        }
+
+        public Dictionary<Book, int> FindAll(Dictionary<int, int> bookIds)
+        {
+            var query = from kv in bookIds
+                select new KeyValuePair<Book, int>(appDataContext.Book.Find(kv.Key), kv.Value);
+            return query.ToDictionary(v => v.Key, v => v.Value);
+        }
     }
 }
